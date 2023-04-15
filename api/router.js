@@ -6,6 +6,7 @@ const { createDayToBeRemembered, getDayToBeRemembered , updateDayToBeRemembered 
 const { createQuote , updateQuote, getQuote , deleteQuote } = require('./QuoteModelController')
 const { createTag, getTag , updateTag , deleteTag } = require('./TagModelController')
 const { createYear , updateYear, getYear , deleteYear } = require('./YearModelController')
+const { savePdfInBackend , respondAfterSavingPdf, mergePdfs } = require('./PDFHandler')
 
 
 
@@ -32,5 +33,7 @@ router.get('/get_year', getYear  )
 router.post('/update_year', updateYear  )
 router.post('/delete_year', deleteYear  )
 
+router.post('/save_pdf_in_backend', savePdfInBackend.single('blob'),respondAfterSavingPdf )
+router.get('/merge_pdfs', mergePdfs )
 
 module.exports = router
