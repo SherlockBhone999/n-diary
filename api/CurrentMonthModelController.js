@@ -2,7 +2,6 @@
 
 const { CurrentMonthModel } = require('./models')
 
-const current_month_id = "64366bdbd49a70e0d1699ea4"
 
 
 const  updateCurrentMonth = (req, res) => {
@@ -11,12 +10,28 @@ const  updateCurrentMonth = (req, res) => {
   .then(()=>console.log('updated current month'))
 }
 
-const getCurrentMonth = (req, res) => {
-  CurrentMonthModel.findOne({_id : current_month_id })
+const getCurrentMonthFiltered = (req, res) => {
+  CurrentMonthModel.findOne({},{ days : { delta_data : 0 , tags : 0, thoughts : 0 ,included_in_days_of_the_year: 0 ,reason_to_be_included: 0 }  })
   .then(data=>{
     res.json(data)
-  })
+  }) 
+}
+
+const getADayFullFromCurrentMonth = (req, res) => {
+  const day = "16.4.2023"
+  CurrentMonthModel.find({},{ days : { day : day , delta_data : 1} })
+  .then(data => {
+    console.log('test')
+    console.log(data[0].days)
+    })
+}
+
+const getCurrentMonthFull = (req, res) => {
+  CurrentMonthModel.findOne()
+  .then(data=>{
+    res.json(data)
+  }) 
 }
 
 
-module.exports = { updateCurrentMonth, getCurrentMonth }
+module.exports = { updateCurrentMonth, getCurrentMonthFiltered , getADayFullFromCurrentMonth , getCurrentMonthFull }

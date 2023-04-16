@@ -4,11 +4,16 @@ const { YearModel } = require('./models')
 
 
 const createYear = (req, res) => {
-  console.log('    ')
+  const { year, days_of_the_year , months } = req.body
+  YearModel.create({year, days_of_the_year, months})
+  .then(data => {
+    console.log('created year', data )
+  })
 }
 
 const getYear = (req, res) => {
-  console.log('  getYear  ')
+  YearModel.find()
+  .then(data => res.json(data))
 }
 
 
