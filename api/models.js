@@ -34,11 +34,31 @@ const yearSchema = new mongoose.Schema({
 
 
 
+const currentMonthDaySchema = new mongoose.Schema({
+  day : { type : String , required : true },
+  thoughts : { type : Array , default : [] },
+  tags : { type : Array , default : [] },
+  included_in_days_of_the_year : { type : Boolean , default : false },
+  reason_to_be_included : { type : String , required : true },
+  delta_data : { type : Object } 
+})
+
+
+const currentMonthExtraDataSchema = new mongoose.Schema({
+  month : { type : String , required : true },
+  resolution : { type : String }
+})
+
+
 const TagModel = mongoose.model('tags', tagSchema )
 const QuoteModel = mongoose.model('quotes', quoteSchema )
 const DayToBeRememberedModel = mongoose.model('days_to_be_remembered', dayToBeRememberedSchema )
 const CurrentMonthModel = mongoose.model('current_month', currentMonthSchema )
 const YearModel = mongoose.model('years', yearSchema )
+const CurrentMonthDayModel = mongoose.model('current_month_day' , currentMonthDaySchema )
+const CurrentMonthExtraDataModel = mongoose.model('current_month_extra_data', currentMonthExtraDataSchema )
 
 
-module.exports = { TagModel , QuoteModel , DayToBeRememberedModel , CurrentMonthModel, YearModel }
+
+
+module.exports = { TagModel , QuoteModel , DayToBeRememberedModel , CurrentMonthModel, YearModel , CurrentMonthDayModel , CurrentMonthExtraDataModel }

@@ -21,11 +21,13 @@ const getTag = (req, res) => {
 const updateTag = (req, res) => {
   const { id , tag } = req.body
   TagModel.findByIdAndUpdate(id, {tag})
+  .then(()=>console.log('updated tag'))
 }
 
 const deleteTag = (req, res) => {
   const { id } = req.body
   TagModel.findByIdAndDelete(id)
+  .then(()=>console.log('deleted tag'))
 }
 
 module.exports = { createTag, getTag , updateTag , deleteTag }
