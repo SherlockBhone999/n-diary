@@ -14,7 +14,7 @@ getQuote ,
 deleteQuote } = require('./QuoteModelController')
 
 const { createTag, getTag , updateTag , deleteTag } = require('./TagModelController')
-const { createYear , updateYear, getYear , deleteYear } = require('./YearModelController')
+const { createYear , updateYear, getYear } = require('./YearModelController')
 
 const { savePdfInBackend , 
 respondAfterSavingPdf, 
@@ -26,12 +26,11 @@ const { getCurrentMonthDaysMin ,
 getCurrentMonthDay,
 createCurrentMonthDay,
 updateCurrentMonthDay,
-deleteCurrentMonthDay } = require('./CurrentMonthDayModelController')
+deleteCurrentMonthDay,
+getAllCurrentMonthDaysFull  } = require('./CurrentMonthDayModelController')
 
-const { getCurrentMonthExtraData,
-createCurrentMonthExtraData,
-updateCurrentMonthExtraData,
-deleteCurrentMonthExtraData } = require('./CurrentMonthExtraDataModelController')
+const { getCurrentMonthExtraData, 
+updateCurrentMonthExtraData } = require('./CurrentMonthExtraDataModelController')
 
 
 router.post('/create_day_to_be_remembered', createDayToBeRemembered )
@@ -53,7 +52,6 @@ router.post('/delete_tag',  deleteTag )
 router.post('/create_year', createYear )
 router.get('/get_year', getYear  )
 router.post('/update_year', updateYear  )
-router.post('/delete_year', deleteYear  )
 
 router.post('/save_pdf_in_backend', savePdfInBackend.single('blob'),respondAfterSavingPdf )
 router.get('/merge_pdfs', mergePdfs )
@@ -66,10 +64,9 @@ router.post('/get_current_month_day', getCurrentMonthDay )
 router.post('/create_current_month_day', createCurrentMonthDay )
 router.post('/update_current_month_day', updateCurrentMonthDay )
 router.post('/delete_current_month_day', deleteCurrentMonthDay )
+router.get('/get_all_current_month_days_full', getAllCurrentMonthDaysFull )
 
 router.get('/get_current_month_extra_data', getCurrentMonthExtraData )
-router.post('/create_current_month_extra_data', createCurrentMonthExtraData )
 router.post('/update_current_month_extra_data', updateCurrentMonthExtraData )
-//router.post('/delete_current_month_extra_data', deleteCurrentMonthExtraData )
 
 module.exports = router

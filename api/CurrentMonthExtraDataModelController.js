@@ -2,7 +2,8 @@
 const { CurrentMonthExtraDataModel } = require('./models')
 
 const getCurrentMonthExtraData = (req, res) => {
-  console.log('getCurrentMonthExtraData')
+  CurrentMonthExtraDataModel.find()
+  .then(data => res.json(data) )
 }
 
 const createCurrentMonthExtraData = (req, res) => {
@@ -10,7 +11,9 @@ const createCurrentMonthExtraData = (req, res) => {
 }
 
 const updateCurrentMonthExtraData = (req, res) => {
-  console.log('updateCurrentMonthExtraData', req.body )
+  const { _id, resolution } = req.body
+  CurrentMonthExtraDataModel.findByIdAndUpdate(_id, {resolution } )
+  .then(()=>console.log('updateCurrentMonthExtraData', req.body ))
 }
 
 const deleteCurrentMonthExtraData = (req, res) => {

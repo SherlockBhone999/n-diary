@@ -18,7 +18,9 @@ const getYear = (req, res) => {
 
 
 const  updateYear = (req, res) => {
-  console.log('  updateYear  ')
+  const { _id, year, days_of_the_year , months } = req.body
+  YearModel.findByIdAndUpdate(_id, { year, days_of_the_year, months })
+  .then(()=>'updatedYear')
 }
 
 

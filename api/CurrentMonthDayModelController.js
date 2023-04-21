@@ -13,6 +13,11 @@ const getCurrentMonthDay = (req, res) => {
   .then(data => res.json(data))
 }
 
+const getAllCurrentMonthDaysFull = (req, res ) => {
+  CurrentMonthDayModel.find()
+  .then(data => res.json(data))
+}
+
 const createCurrentMonthDay = (req,res) => {
   const { day , thoughts, tags,  included_in_days_of_the_year ,reason_to_be_included, delta_data } = req.body
   CurrentMonthDayModel.create({ day, thoughts , tags , included_in_days_of_the_year , reason_to_be_included , delta_data })
@@ -26,7 +31,9 @@ const updateCurrentMonthDay = (req,res) => {
 }
 
 const deleteCurrentMonthDay = (req, res) => {
-  console.log('deleteCurrentMonthDay' , req.body )
+  const { _id } = req.body
+  CurrentMonthDayModel.findByIdAndDelete(_id)
+  .then(()=>console.log('deletedCurrentMonthDay', _id ))
 }
 
 
@@ -35,5 +42,6 @@ module.exports = {
   getCurrentMonthDay,
   createCurrentMonthDay,
   updateCurrentMonthDay,
-  deleteCurrentMonthDay
+  deleteCurrentMonthDay,
+  getAllCurrentMonthDaysFull
 }
