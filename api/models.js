@@ -39,7 +39,7 @@ const currentMonthDaySchema = new mongoose.Schema({
   thoughts : { type : Array , default : [] },
   tags : { type : Array , default : [] },
   included_in_days_of_the_year : { type : Boolean , default : false },
-  reason_to_be_included : { type : String , required : true },
+  reason_to_be_included : { type : String },
   delta_data : { type : Object } 
 })
 
