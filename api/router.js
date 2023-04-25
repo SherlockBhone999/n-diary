@@ -32,6 +32,8 @@ getAllCurrentMonthDaysFull  } = require('./CurrentMonthDayModelController')
 const { getCurrentMonthExtraData, 
 updateCurrentMonthExtraData } = require('./CurrentMonthExtraDataModelController')
 
+const {uploadImgToCloudinary , deleteImgInCloudinary } = require('./cloudinary')
+
 
 router.post('/create_day_to_be_remembered', createDayToBeRemembered )
 router.get('/get_days_to_be_remembered_min', getDaysToBeRememberedMin  )
@@ -58,9 +60,8 @@ router.get('/merge_pdfs', mergePdfs )
 router.get('/delete_pdfs', clearBookStation )
 router.get('/upload_pdf_to_gdrive',uploadPdfTogdrive)
 
-
+router.post('/get_current_month_day_one', getCurrentMonthDay )
 router.get('/get_current_month_days_min' , getCurrentMonthDaysMin )
-router.post('/get_current_month_day', getCurrentMonthDay )
 router.post('/create_current_month_day', createCurrentMonthDay )
 router.post('/update_current_month_day', updateCurrentMonthDay )
 router.post('/delete_current_month_day', deleteCurrentMonthDay )
@@ -68,5 +69,16 @@ router.get('/get_all_current_month_days_full', getAllCurrentMonthDaysFull )
 
 router.get('/get_current_month_extra_data', getCurrentMonthExtraData )
 router.post('/update_current_month_extra_data', updateCurrentMonthExtraData )
+
+
+router.post('/upload_img_to_cloudinary', (req,res)=>{
+  const {img} = req.body
+  uploadImgToCloudinary(img, res)
+})
+
+router.post('/delete_img_in_cloudinary', (req, res)=>{
+     const public_id = 'diaryApp/tn1cfuyrzoo8lfmzgjig'
+     deleteImgInCloudinary(public_id)
+})
 
 module.exports = router

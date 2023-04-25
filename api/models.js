@@ -29,7 +29,9 @@ const currentMonthSchema = new mongoose.Schema({
 const yearSchema = new mongoose.Schema({
   year : { type : String , required : true },
   days_of_the_year : { type : Array , default : []},
-  months : { type : Array , default : []}
+  months : { type : Array , default : []} ,
+  comment : { type : String , required : false },
+  profile_img_link : { type : String , required : false },
 })
 
 
