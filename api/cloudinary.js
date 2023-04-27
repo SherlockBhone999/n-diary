@@ -1,6 +1,6 @@
 
 const cloudinary = require('cloudinary').v2;
-
+const  { YearModel } = require('./models')
 
 // Configuration 
 cloudinary.config({
@@ -23,7 +23,7 @@ const uploadImgToCloudinary = async (image64, res ) => {
     console.log(err)
   })
 }
-
+/*
 const upload = async (image64) => {
   await cloudinary.uploader.upload(image64, {
     folder : "diaryApp"
@@ -35,7 +35,7 @@ const upload = async (image64) => {
     console.log(err)
   })
 }
-
+*/
 
 const deleteImgInCloudinary = async = (public_id) => {
     cloudinary.uploader.destroy(public_id, function(err,result) { 
@@ -44,8 +44,32 @@ const deleteImgInCloudinary = async = (public_id) => {
     });
 }
 
+const uploadImgToCloudinaryAndUpdateYear = async (data, res) => {
+    const { newImg, cloudinary_public_id,  _id, year, comment, 
+    months, days_of_the_year } = data
+    console.log('uploadImgToCloudinaryAndUpdateYear')
+    
+    await cloudinary.uploader.upload( newImg , {
+    folder : "diaryApp"
+    //public_id : name
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    .then(data => {
+      console.log('uploaded new img to cloudinary ',data.secure_url)
+      const profile_img_link = data.secure_url
+      
+        YearModel.findByIdAndUpdate(_id,{ year, days_of_the_year, months , comment, profile_img_link} )
+        .then(()=>{
+          console.log('updated year')
+        })
+    })
+    
+}
 
-module.exports = {uploadImgToCloudinary , deleteImgInCloudinary }
+
+module.exports = {uploadImgToCloudinary , deleteImgInCloudinary , uploadImgToCloudinaryAndUpdateYear }
 
 // Upload
 /*

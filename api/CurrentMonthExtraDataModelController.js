@@ -11,8 +11,8 @@ const createCurrentMonthExtraData = (req, res) => {
 }
 
 const updateCurrentMonthExtraData = (req, res) => {
-  const { _id, resolution } = req.body
-  CurrentMonthExtraDataModel.findByIdAndUpdate(_id, {resolution } )
+  const { _id, resolution , resolution_fulfilled, comment } = req.body
+  CurrentMonthExtraDataModel.findByIdAndUpdate(_id, {resolution , resolution_fulfilled, comment } )
   .then(()=>console.log('updateCurrentMonthExtraData', req.body ))
 }
 

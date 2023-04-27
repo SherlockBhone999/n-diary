@@ -48,7 +48,9 @@ const currentMonthDaySchema = new mongoose.Schema({
 
 const currentMonthExtraDataSchema = new mongoose.Schema({
   month : { type : String , required : true },
-  resolution : { type : String }
+  resolution : { type : String },
+  resolution_fulfilled : { type : String },
+  comment : { type : String }
 })
 
 

@@ -14,7 +14,7 @@ getQuote ,
 deleteQuote } = require('./QuoteModelController')
 
 const { createTag, getTag , updateTag , deleteTag } = require('./TagModelController')
-const { createYear , updateYear, getYear } = require('./YearModelController')
+const { createYear , updateYear, getYear,updatePartOfYear} = require('./YearModelController')
 
 const { savePdfInBackend , 
 respondAfterSavingPdf, 
@@ -76,9 +76,12 @@ router.post('/upload_img_to_cloudinary', (req,res)=>{
   uploadImgToCloudinary(img, res)
 })
 
-router.post('/delete_img_in_cloudinary', (req, res)=>{
-     const public_id = 'diaryApp/tn1cfuyrzoo8lfmzgjig'
-     deleteImgInCloudinary(public_id)
+router.post('/delete_img_in_cloudinary', (req, res) => {
+  const {public_id} = req.body
+  console.log(public_id)
+  //deleteImgInCloudinary(public_id)
 })
+
+router.post('/update_part_of_year', updatePartOfYear )
 
 module.exports = router
