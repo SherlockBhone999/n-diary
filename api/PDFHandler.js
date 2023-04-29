@@ -104,7 +104,11 @@ const clearBookStation = (req,res) => {
 
 ////
 const uploadPdfTogdrive = (req, res) => {
-  uploadFile('mymonth', 'merged.pdf')
+  const date = new Date()
+  const m = date.getMonth()+1
+  const y = date.getFullYear()
+  const month = ( m + '.' + y ).toString()
+  uploadFile(month , 'merged.pdf')
   .then(data => { 
     console.log('uploaded to gdrive', data ) 
     const link = `https://drive.google.com/file/d/${data}/view?usp=share_link`

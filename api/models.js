@@ -19,13 +19,6 @@ const quoteSchema = new mongoose.Schema({
 })
 
 
-const currentMonthSchema = new mongoose.Schema({
-  month : { type : String , required : true },
-  resolution : { type : String , required : true },
-  days : { type : Array , default : [] }
-})
-
-
 const yearSchema = new mongoose.Schema({
   year : { type : String , required : true },
   days_of_the_year : { type : Array , default : []},
@@ -57,7 +50,6 @@ const currentMonthExtraDataSchema = new mongoose.Schema({
 const TagModel = mongoose.model('tags', tagSchema )
 const QuoteModel = mongoose.model('quotes', quoteSchema )
 const DayToBeRememberedModel = mongoose.model('days_to_be_remembered', dayToBeRememberedSchema )
-const CurrentMonthModel = mongoose.model('current_month', currentMonthSchema )
 const YearModel = mongoose.model('years', yearSchema )
 const CurrentMonthDayModel = mongoose.model('current_month_day' , currentMonthDaySchema )
 const CurrentMonthExtraDataModel = mongoose.model('current_month_extra_data', currentMonthExtraDataSchema )
@@ -65,4 +57,4 @@ const CurrentMonthExtraDataModel = mongoose.model('current_month_extra_data', cu
 
 
 
-module.exports = { TagModel , QuoteModel , DayToBeRememberedModel , CurrentMonthModel, YearModel , CurrentMonthDayModel , CurrentMonthExtraDataModel }
+module.exports = { TagModel , QuoteModel , DayToBeRememberedModel , YearModel , CurrentMonthDayModel , CurrentMonthExtraDataModel }
